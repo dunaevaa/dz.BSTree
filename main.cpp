@@ -15,31 +15,22 @@ class BSTree {
         BSTree() { root = nullptr; }
         void add(Node *&root, int data) {
             if (root == nullptr) {
-                root = new Node;
-                root->data = data;
-                root->left = nullptr;
-                root->right = nullptr;
+                root = new Node { data, nullptr, nullptr };
             }
             if (data < root->data) {
                 if (root->left = nullptr) {
-                    root->left = new Node;
-                    root->left->left = nullptr;
-                    root->left->right = nullptr;
-                    root->left->data = data;
+                        root->left = new Node { data, nullptr, nullptr };
                 }
                 else add(root->left, data);
             }
             if (data > root->data) {
                 if (root->right = nullptr) {
-                        root->right = new Node;
-                        root->right->left = nullptr;
-                        root->right->right = nullptr;
-                        root->right-> data = data;
+                        root->right = new Node { data, nullptr, nullptr };
                 }   
-                else add (root->right, data);
+                else add(root->right, data);
             }
         }
-        void element(int data) { add (root, data);}
+        void insert(int data) { add (root, data);}
         ~BSTree() {}
 };
 
@@ -58,9 +49,9 @@ void menu(){
 
 int main(int argc, char* argv[]) {
     setlocale(LC_ALL, "Russian");
-    BSTree *tree = new BSTree;
+    BSTree tree;
     for (int i=1; i<argc; i++) { 
-        tree -> element(atoi(argv[i]));
+        tree.element(atoi(argv[i]));
     };
     int choice = 0;
     while (true) {
@@ -86,5 +77,4 @@ int main(int argc, char* argv[]) {
             default: cout << " Неверная команда " << endl;
         }
     }
-    delete tree;
 }
