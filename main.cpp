@@ -30,8 +30,18 @@ class BSTree {
                 else add(root->right, data);
             }
         }
-        void insert(int data) { add (root, data);}
-        ~BSTree() {}
+        void insert(int data) { add (root, data); }
+        void delete_tree(Node *&data) {
+            if (data != nullptr) {
+                delete_tree(data->left);
+                delete_tree(data->right);
+                delete data;
+                data = nullptr;
+            }
+        }
+        ~BSTree() {
+            delete_tree(root);
+        }
 };
 
 
