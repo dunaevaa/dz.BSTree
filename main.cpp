@@ -77,15 +77,12 @@ class BSTree {
             }
         }
         void select_bypass( char choice_bypass ) {
-            if (choice_bypass == 'a') {
+            if (choice_bypass == 'a') 
                 direct_bypass(root);
-            }
-            if (choice_bypass == 'b') {
+            if (choice_bypass == 'b') 
                 cross_bypass(root);
-            }
-            if (choice_bypass == 'c') {
-            reverse_bypass(root);
-            }
+            if (choice_bypass == 'c') 
+                reverse_bypass(root);
         }
 };
 
@@ -118,7 +115,7 @@ int main(int argc, char* argv[]) {
             break;
             case 2: cout << "Выберите способ обхода" << endl;
                     cin >> choice_bypass;
-                    tree.select_bypass( choice_bypass );
+                    tree.select_bypass(choice_bypass);
                     cout << endl;
             break;
             case 3:
@@ -133,9 +130,9 @@ int main(int argc, char* argv[]) {
             break;
             case 8: cout << "Вы уверены, что хотите выйти из программы?";
                     cin >> choice_exit;
-                    if (choice_exit == "Да" )
+                    if (choice_exit == "Да")
                         return 0;
-                    else if (choice_exit == "да" ) 
+                    else if (choice_exit == "да") 
                         return 0;
             default: cout << " Неверная команда " << endl;
         }
