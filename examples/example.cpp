@@ -1,9 +1,12 @@
-#include "bstree.cpp"
+#include "bstree.hpp"
 #include<iostream>
 #include<locale>
 #include<string>
 #include<fstream>
+
 using namespace std;
+using namespace BSTree;
+
 
 int main(int argc, char* argv[]) {
     setlocale(LC_ALL, "Russian");
