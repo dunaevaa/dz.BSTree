@@ -111,7 +111,7 @@ class BSTree {
         bool unload_from_file(string& road) {
             ifstream fin(road.c_str());
             if (!fin.is_open()) {
-                cout << "файл не открыт";
+                cout << "Файл не открыт";
                 return false;
             }
             if (root) 
@@ -124,7 +124,7 @@ class BSTree {
 
         bool exists(int value) const {
             if(!root) {
-                cout << "дерево пустое" << endl;
+                cout << "Дерево пустое" << endl;
                 return false;
             } else if (root) {
                 Node *current = root;
@@ -137,83 +137,83 @@ class BSTree {
                     break;
                 }
                 if(current == nullptr) {
-                    cout << "узел не найден" << endl;
+                    cout << "Узел не найден" << endl;
                     return false;
                 } else {
-                    cout << "узел найден" << endl;
+                    cout << "Узел найден" << endl;
                     return true;
                 }
             }
         }
     
         auto delete_node(Node *&root, int value) -> bool {
-            if(!root) {
-		        cout << "дерево пустое" << endl;
-		        return false;
-	        } else if(root) {
-		        Node *current = root;
-		        while (current != nullptr) {
-			        if (value < current->data) 
-				        current = current->right;
-			        else if (value > current->data) 
-				        current = current->left;
-			        else if (current->data == value)
-				        break;
-                }
+            if (!root) {
+		cout << "Дерево пустое" << endl;
+		return false;
+	    } else if (root) {
+		Node *current = root;
+		while (current != nullptr) {
+			if (value < current->data) 
+				current = current->right;
+			else if (value > current->data) 
+				current = current->left;
+			else if (current->data == value)
+				break;
+		}
                 if (current == nullptr) {
-                    cout << "узел не найден" << endl;
+                    cout << "Узел не найден" << endl;
                     return false;
                 }
                 Node* left = nullptr;
                 Node* right = nullptr;
-		        if (current == root) {
-		            if (current->right!=nullptr && current->left!=nullptr) {
-		                root=current->right;
-		                insert(root,root,current->left);
-		            } else if (current->right!=nullptr && current->left==nullptr) 
-			            root = current->right;
-		              else if (current->left!=nullptr && current->right==nullptr) 
-		                root = current->left;
+		if (current == root) {
+		    if (current->right!=nullptr && current->left!=nullptr) {
+			root=current->right;
+			insert(root,root,current->left);
+		    } else if (current->right!=nullptr && current->left==nullptr) 
+		    		root = current->right;
+		      else if (current->left!=nullptr && current->right==nullptr) 
+				root = current->left;
                       else if (current->left==nullptr && current->right==nullptr)
-		                root=nullptr;
-			        delete current;
-			        cout << "успешно удалено" << endl;
-			        return true;
-		        } else {
+				root = nullptr;
+			delete current;
+			cout << "Успешно удалено" << endl;
+			return true;
+		} else {
                     if (current->right != nullptr && current->left == nullptr) {
-				        if (current == current->parent->left)
-					        current->parent->left = nullptr;
-				        else
-					        current->parent->right = nullptr;
-				        right = current->right;
-				        insert(root, root, right);
-			        } else if (current->left != nullptr && current->right == nullptr) {
-				        if (current == current->parent->left)
-					        current->parent->left = nullptr;
-				        else
-					        current->parent->right = nullptr;
-				        left = current->left;
-				        insert(root, root, left);
-			        } else if (current->right != nullptr && current->left != nullptr) {
-				        left = current->left;
-				        right = current->right;
-				        if (current == current->parent->left)
-					        current->parent->left = nullptr;
-				        else
-					        current->parent->right = nullptr;
-				        insert(root, root, left);
-				        insert(root, root, right);
-			        } else {
-				        if (current == current->parent->left)
-					        current->parent->left = nullptr;
-				        if (current == current->parent->right)
-					        current->parent->right = nullptr;
-			        }
-			        delete current;
-			        cout << "Удалено успешно" << endl;
-			        return true;
-		        }
-	        }
+			if (current == current->parent->left)
+				current->parent->left = nullptr;
+			else
+				current->parent->right = nullptr;
+			right = current->right;
+			insert(root, root, right);
+		    } else if (current->left != nullptr && current->right == nullptr) {
+			if (current == current->parent->left)
+				current->parent->left = nullptr;
+			else
+				current->parent->right = nullptr;
+			left = current->left;
+			insert(root, root, left);
+		    } else if (current->right != nullptr && current->left != nullptr) {
+			left = current->left;
+			right = current->right;
+			if (current == current->parent->left)
+				current->parent->left = nullptr;
+			else
+				current->parent->right = nullptr;
+			insert(root, root, left);
+			insert(root, root, right);
+		    } else {
+			if (current == current->parent->left)
+				current->parent->left = nullptr;
+			if (current == current->parent->right)
+				current->parent->right = nullptr;
+		    }
+		    delete current;
+		    cout << "Удалено успешно" << endl;
+		    return true;
+	         }
+	     }
         }
         auto insert(Node*& root, Node*& parent, int value) -> Node* {
 	        if (root == nullptr) {
@@ -292,7 +292,7 @@ int main(int argc, char* argv[]) {
                         return 0;
                     else if (choice_exit == "да") 
                         return 0;
-            default: cout << " Неверная команда " << endl;
+            default: cout << "Неверная команда " << endl;
         }
     }
 }
