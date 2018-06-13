@@ -138,90 +138,90 @@ void show(Node*node, int stage) {
         }
     
 auto delete_node(Node *&root, int value) -> bool {
-     if (!root) {
-		       cout << "Дерево пустое" << endl;
-		       return false;
-     } else if (root) {
-         Node *current = root;
-		       while (current != nullptr) {
-			          if (value < current->data) 
-				             current = current->right;
-			          else if (value > current->data) 
-                 current = current->left;
-			          else if (current->data == value)
-				             break;
-		       }
-         if (current == nullptr) {
-             cout << "Узел не найден" << endl;
-             return false;
-         }
-         Node* left = nullptr;
-         Node* right = nullptr;
-         if (current == root) {
-             if (current->right!=nullptr && current->left!=nullptr) {
-                root=current->right;
-                insert(root,root,current->left);
-             } else if (current->right!=nullptr && current->left==nullptr) 
-                root = current->right;
-		             else if (current->left!=nullptr && current->right==nullptr) 
-                root = current->left;
-               else if (current->left==nullptr && current->right==nullptr)
-                root = nullptr;
-			          delete current;
-			          cout << "Успешно удалено" << endl;
-             return true;
-         } else {
-             if (current->right != nullptr && current->left == nullptr) {
-               if (current == current->parent->left)
-				              current->parent->left = nullptr;
-			            else
-			 	             current->parent->right = nullptr;
-			           right = current->right;
-			           insert(root, root, right);
+	if (!root) {
+		cout << "Дерево пустое" << endl;
+		return false;
+	} else if (root) {
+		Node *current = root;
+		while (current != nullptr) {
+			if (value < current->data) 
+				current = current->right;
+		  	else if (value > current->data) 
+                 		current = current->left;
+		  	else if (current->data == value)
+			     	break;
+	       }
+		if (current == nullptr) {
+             		cout << "Узел не найден" << endl;
+             		return false;
+		}
+         	Node* left = nullptr;
+         	Node* right = nullptr;
+         	if (current == root) {
+             		if (current->right!=nullptr && current->left!=nullptr) {
+                		root=current->right;
+                		insert(root,root,current->left);
+             		} else if (current->right!=nullptr && current->left==nullptr) 
+                		root = current->right;
+			else if (current->left!=nullptr && current->right==nullptr) 
+                		root = current->left;
+               		else if (current->left==nullptr && current->right==nullptr)
+                		root = nullptr;
+	  		delete current;
+			cout << "Успешно удалено" << endl;
+             		return true;
+         	} else {
+             		if (current->right != nullptr && current->left == nullptr) {
+               			if (current == current->parent->left)
+				      current->parent->left = nullptr;
+			    	else
+				     	current->parent->right = nullptr;
+			   	right = current->right;
+				insert(root, root, right);
 		       } else if (current->left != nullptr && current->right == nullptr) {
-			          if (current == current->parent->left)
-				             current->parent->left = nullptr;
-             else
-				             current->parent->right = nullptr;
-			          left = current->left;
-			          insert(root, root, left);
-		        } else if (current->right != nullptr && current->left != nullptr) {
-             left = current->left;
-             right = current->right;
-			          if (current == current->parent->left)
-				             current->parent->left = nullptr;
-             else
-				             current->parent->right = nullptr;
-             insert(root, root, left);
-			          insert(root, root, right);
-          } else {
-			          if (current == current->parent->left)
-				             current->parent->left = nullptr;
-             if (current == current->parent->right)
-                 current->parent->right = nullptr;
+				if (current == current->parent->left)
+			     		current->parent->left = nullptr;
+             			else
+				     	current->parent->right = nullptr;
+			  	left = current->left;
+			  	insert(root, root, left);
+			} else if (current->right != nullptr && current->left != nullptr) {
+             			left = current->left;
+				right = current->right;
+				if (current == current->parent->left)
+				     current->parent->left = nullptr;
+             			else
+				     current->parent->right = nullptr;
+             			insert(root, root, left);
+				insert(root, root, right);
+          		} else {
+			  	if (current == current->parent->left)
+			     		current->parent->left = nullptr;
+             			if (current == current->parent->right)
+                 			current->parent->right = nullptr;
 		        }
 		        delete current;
-          cout << "Удалено успешно" << endl;
+          		cout << "Удалено успешно" << endl;
 		        return true;
-         }
-     }
+         	}
+     	}
 }
 auto insert(Node*& root, Node*& parent, int value) -> Node* {
-   if (root == nullptr) {
-      root = new Node {value, nullptr, nullptr, nullptr};
-      if (root != this->root)
-      root->parent = parent;
-    } else {
-       if (root->data < value) 
-			        root->left = insert(root->left, root, value);
-      else if (root->data > value) 
-			        root->right = insert(root->right, root, value);
-      else if (root -> data == value) {
-			        cout << "Дерево имеет этот узел" << endl;
-			        return root;
-      }
-   }
-   return root;
+	if (root == nullptr) {
+		root = new Node {value, nullptr, nullptr, nullptr};
+		if (root != this->root)
+			root->parent = parent;
+	} else {
+		if (root->data < value) 
+			root->left = insert(root->left, root, value);
+      		else if (root->data > value) 
+			root->right = insert(root->right, root, value);
+      		else if (root -> data == value) {
+			cout << "Дерево имеет этот узел" << endl;
+			return root;
+		}
+	}
+   	return root;
 }
 auto delete_node(int value) -> void {
    delete_node(root,value);
